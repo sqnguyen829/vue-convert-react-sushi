@@ -25,21 +25,22 @@ export default {
     font-family: sans-serif;
   }
 
-  /* .app {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr, 2fr, 2fr, 2fr, 1fr);
-    grid-auto-rows: minmax(100px, auto);
+  .app {
+    /* display: grid; */
+    /* grid-template-columns: repeat(5, 1fr, 2fr, 2fr, 2fr, 1fr); */
+    /* grid-auto-rows: minmax(100px, auto); */
     align-items: center;
     grid-template-areas: 
         ". . . . ."
         ". bt bt bt ."
         ". . rm . ."
         ". tb tb tb .";
-  } */
+  }
 
   .remaining {
     grid-area: rm;
     margin: auto;
+    text-align: center;
   }
 
   .plate {
@@ -72,13 +73,13 @@ export default {
   .stack {
     position: relative;
     top: 30px;
+    text-align: center;
   }
 
   .belt {
     grid-area: bt;
     display: flex;
     justify-content: space-evenly;
-
   }
 
   .sushi {

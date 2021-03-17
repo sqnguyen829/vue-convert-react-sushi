@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 class="remaining">
-        {{'You have: ${ /* Give me how much money I have left */ } remaining!'}}
+        {{'You have:  remaining!'}}
       </h1>
       <div class="table">
         <div class="stack">
