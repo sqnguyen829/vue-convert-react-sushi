@@ -4,8 +4,12 @@
         {{`You have: $${money}`}}
       </h1>
       <div class="table">
-        <div class="stack" v-bind:key="sushi.id" v-for="sushi in eatenSushi">
-          <div  class="empty-plate" :style="{'top': -7 * eatenSushi.indexOf(sushi) + 'px'}"/>
+        <div class="stack">
+          <div 
+            class="empty-plate" 
+            :style="{'top': -7 * eatenSushi.indexOf(sushi) + 'px'}" 
+            v-bind:key="sushi.id" 
+            v-for="sushi in eatenSushi"/>
         </div>
       </div>
     </div>
