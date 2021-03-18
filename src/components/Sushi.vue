@@ -1,10 +1,19 @@
 <template>
     <div class="sushi">
-      <div class="plate" @click="console.log('test')">
-        {{ 'check if sushi is eaten'? '' :<img src='something' width="100%" />}}
+      <div class="plate" @click="$emit('eat-sushi', sushi)">
+        <div v-if="!eatenSushi.includes(sushi)">
+          <img v-bind:src='sushi.img_url' width="100%" />
+        </div>
       </div>
-      <h4 class="sushi-details">
-        {{'Give me a name!-  Give me a price! '}}
-      </h4>
+      <p class="sushi-details">
+        {{sushi.name}}  -  {{sushi.price}}
+      </p>
     </div>
 </template>
+
+<script>
+export default {
+  name:"Sushi",
+  props:["sushi", "eatenSushi"]
+}
+</script>

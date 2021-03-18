@@ -1,7 +1,11 @@
 <template>
   <div class="app">
-        <SushiContainer />
-        <Table />
+        <SushiContainer 
+          v-bind:sushis="sushiBelt" 
+          v-bind:eatenSushi="eatenSushi"
+          v-on:next-sushi="nextSushi" 
+          v-on:eat-sushi="eatSushi"/>
+        <Table v-bind:eatenSushi="eatenSushi" v-bind:money="money"/>
       </div>
 </template>
 
@@ -14,6 +18,41 @@ export default {
   components: {
     SushiContainer,
     Table
+  },
+  data() {
+    return {
+      sushis:[],
+      sushiBelt:[],
+      eatenSushi:[],
+      sushiIndex:0,
+      money:100
+    }
+  },
+  created() {
+    fetch('http://localhost:3000/sushis', {
+      method:'GET'
+    })
+    .then(res => res.json())
+    .then(data => {
+      this.sushis = data
+      this.sushiBelt = data.slice(0,5)
+    })
+    .catch(err => console.log(err))
+  },
+  methods:{
+    nextSushi() {
+      this.sushiIndex = this.sushiIndex +5
+      if(this.sushiIndex === this.sushis.length){
+        this.sushiIndex = 0
+      }
+      this.sushiBelt = this.sushis.slice(this.sushiIndex, this.sushiIndex+5)
+    },
+    eatSushi(sushi) {
+      if(!this.eatenSushi.includes(sushi) && this.money >= sushi.price){
+        this.money = this.money - sushi.price
+        this.eatenSushi = [...this.eatenSushi, sushi]
+      }
+    }
   }
 }
 </script>
